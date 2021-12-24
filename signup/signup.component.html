@@ -1,0 +1,34 @@
+<h4>SignUp Page:</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <div formGroupName="name">
+    <div class="form-group">
+      <label for="fname">First-Name</label>
+      <input type="text" class="form-control" id="fname" formControlName="fname" />
+      <div class="alert alert-danger" *ngIf="fname?.touched && fname?.invalid">
+        <div *ngIf="fname?.errors?.['required']">First-Name is Required</div>
+      </div>
+      <label for="lname">Last-Name</label>
+      <input type="text" class="form-control" id="lname" formControlName="lname" />
+      <div class="alert alert-danger" *ngIf="lname?.touched && lname?.invalid">
+        <div *ngIf="lname?.errors?.['required']">Last-Name is Required</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email-id</label>
+    <input type="email" class="form-control" id="email" formControlName="email" />
+    <div class="alert alert-danger" *ngIf="email?.touched && email?.invalid">
+      <div *ngIf="email?.errors?.['required']">Email is Required</div>
+      <div *ngIf="email?.errors?.['email']">Email is Invalid</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" formControlName="password" />
+    <div class="alert alert-danger" *ngIf="password?.touched && password?.invalid">
+      <div *ngIf="password?.errors?.['required']">Password is Required</div>
+      <div *ngIf="password?.errors?.['minlength']">Password should be atleast 5 characters</div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Signup</button>
+</form>

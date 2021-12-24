@@ -1,0 +1,45 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Shopping Cart</a>
+  <ul class="nav justify-content-end" *ngIf="authToken.getToken() == null">
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/login">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/signup">Signup</a>
+    </li>
+  </ul>
+  <ul class="nav justify-content-end" *ngIf="authToken.currentUser != null && authToken.currentUser.role === 'admin' && authToken.getToken() != null">
+    <li class="nav-item">
+      <b>{{ name || user_name }}</b>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/manage-products">Manage Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/create-product">Create Product</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/orders">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="onLogout()">Logout</a>
+    </li>
+  </ul>
+  <ul class="nav justify-content-end" *ngIf="authToken.currentUser != null && authToken.currentUser.role === 'user' && authToken.getToken() != null">
+    <li class="nav-item">
+      <b>{{ name || user_name }}</b>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/products">Product List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/cart">Cart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/orders">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="onLogout()">Logout</a>
+    </li>
+  </ul>
+</nav>

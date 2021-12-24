@@ -1,0 +1,30 @@
+<h1>Cart</h1>
+<div class="row" *ngIf="products.length > 0">
+  <h2>Total Price: $ {{ totalPrice }}</h2>
+  <div class="card" style="width: 18rem;" *ngFor="let product of products">
+    <img class="card-img-top" src="http://localhost:3000/{{ product.product_id.image }}" [alt]="product.title">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.product_id.title }}</h5>
+      <p class="card-text">${{ product.price }}</p>
+      <p class="card-text">{{ product.product_id.description }}</p>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <select name="qty" id="quantity" (change)="onSelectChange($event, product.product_id)" [(ngModel)]='product.quantity' >
+          <option value="1" class='selected'>1</option>
+          <option value="2" class='selected'>2</option>
+          <option value="3" class='selected'>3</option>
+          <option value="4" class='selected'>4</option>
+          <option value="5" class='selected'>5</option>
+          <option value="6" class='selected'>6</option>
+          <option value="7" class='selected'>7</option>
+          <option value="8" class='selected'>8</option>
+          <option value="9" class='selected'>9</option>
+          <option value="10" class='selected'>10</option>
+        </select>
+      </div>
+      <a class="btn btn-danger" (click)="onDeleteItem(product.product_id._id)">Delete</a>
+    </div>
+  </div>
+  <a class="btn btn-danger" (click)="postCheckOut()">CheckOut</a>
+</div>
+<h5 *ngIf="products.length == 0">No Products in Cart</h5>

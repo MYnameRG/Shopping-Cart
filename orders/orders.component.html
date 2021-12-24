@@ -1,0 +1,21 @@
+<h1>Orders</h1>
+<div class="orders" *ngFor="let order of orders">
+  <div class="order">
+    <h4>Order ID: {{ order.id }}</h4>
+    <h5 *ngIf="currentRole === 'admin'">Name: {{ order.name }}</h5>
+    <h5>Ordered In: {{ order.created | date: 'medium' }}</h5>
+    <h5>Total Price: {{ order.totalPrice | currency: 'USD' }}</h5>
+    <button class="btn btn-primary" (click)="onCancel(order)" *ngIf="currentRole === 'admin'">Cancel Order</button>
+    <div class="row">
+      <div class="card" style="width: 18rem;" *ngFor="let product of order.products">
+        <img class="card-img-top" src="http://localhost:3000/{{ product.image }}" [alt]="product.title" width="50" height="200">
+        <div class="card-body">
+          <h6 class="card-title">{{ product.title }}</h6>
+          <p class="card-text">Price: {{ product.price | currency: 'USD' }}</p>
+          <p class="card-text">Quantity: {{ product.quantity }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h5 *ngIf="orders.length == 0">No Orders</h5>

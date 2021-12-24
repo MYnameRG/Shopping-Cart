@@ -1,0 +1,9 @@
+<div class="jumbotron">
+  <h1 class="display-4">{{ details?.title }}</h1>
+  <img class="card-img-top" src="http://localhost:3000/{{ details?.image }}" [alt]="details?.title" height="400">
+  <hr class="my-4">
+  <h5>{{ details?.price | currency: 'USD' }}</h5>
+  <p class="lead">{{ details?.description }}</p>
+  <a class="btn btn-primary btn-lg" role="button" (click)="addToCart(details._id)" *ngIf="currentRole === 'user'">Add to Cart</a>
+  <a class="btn btn-primary btn-lg" role="button" (click)="back()">Back</a>
+</div>
